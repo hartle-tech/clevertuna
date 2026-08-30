@@ -1,0 +1,326 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #0A84FF; } a:hover { color: #409CFF; }
+    .mac {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 13px; letter-spacing: -0.005em; color: #F5F5F7;
+    }
+    /* Glass, built from layers rather than a filter: a translucent body, a
+       specular rim brightest along the top edge, and a shadow that lifts it off
+       whatever it is floating over. No backdrop-filter — the content behind it
+       is real, so a live blur would cost paint without changing the reading. */
+    .glass {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.11) 42%, rgba(255,255,255,0.07) 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.42),
+        inset 0 0 0 0.5px rgba(255,255,255,0.16),
+        inset 0 -1px 0 rgba(255,255,255,0.10),
+        0 8px 20px rgba(0,0,0,0.34);
+    }
+    .glass-quiet {
+      background: linear-gradient(180deg, rgba(255,255,255,0.13), rgba(255,255,255,0.07));
+      box-shadow: inset 0 0.5px 0 rgba(255,255,255,0.30), inset 0 0 0 0.5px rgba(255,255,255,0.12);
+    }
+    /* Capsules: macOS 26 rounds controls to their full height. */
+    .cap { display: inline-flex; align-items: center; justify-content: center; height: 30px; padding: 0 14px; border-radius: 15px; }
+    .dim { color: rgba(245,245,247,0.62); }
+    .hdr { font-size: 11px; font-weight: 590; letter-spacing: 0.035em; text-transform: uppercase; color: rgba(245,245,247,0.50); margin-bottom: 8px; }
+    .row { display: flex; align-items: center; gap: 10px; min-height: 34px; }
+  </style>
+</helmet>
+
+<div class="mac" style="width: 1120px; height: 760px; display: flex; align-items: center; justify-content: center; background: #0A0A0C; padding: 20px;">
+
+  <!-- Window. Content runs edge to edge; every control floats on top of it. -->
+  <div style="position: relative; width: 1080px; height: 720px; border-radius: 26px; overflow: hidden; box-shadow: 0 0 0 0.5px rgba(255,255,255,0.14), 0 16px 36px rgba(0,0,0,0.55);">
+
+    <!-- The stage, and the bloom the keyboard casts into it. A radial gradient,
+         not a blurred element: same look, none of the compositing cost. -->
+    <div style="position: absolute; inset: 0; background:
+      radial-gradient(58% 42% at 50% 62%, {{bloomNear}} 0%, {{bloomFar}} 46%, rgba(0,0,0,0) 78%),
+      radial-gradient(120% 90% at 50% 20%, #2A2A30 0%, #17171A 58%, #0E0E10 100%);"></div>
+
+    <!-- Toolbar, floating -->
+    <div class="glass" style="position: absolute; top: 12px; left: 12px; right: 12px; height: 48px; border-radius: 20px; display: flex; align-items: center; gap: 14px; padding: 0 14px 0 16px;">
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <div style="width: 12px; height: 12px; border-radius: 50%; background: #FF5F57; box-shadow: inset 0 0.5px 0 rgba(255,255,255,0.4);"></div>
+        <div style="width: 12px; height: 12px; border-radius: 50%; background: #FEBC2E; box-shadow: inset 0 0.5px 0 rgba(255,255,255,0.4);"></div>
+        <div style="width: 12px; height: 12px; border-radius: 50%; background: #28C840; box-shadow: inset 0 0.5px 0 rgba(255,255,255,0.4);"></div>
+      </div>
+      <div style="width: 6px;"></div>
+      <div style="font-size: 14px; font-weight: 600;">Theme Builder</div>
+      <div style="flex: 1;"></div>
+
+      <div class="glass-quiet cap" style="gap: 7px; padding: 0 13px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F5F5F7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="8.6" cy="8.6" r="1.15" fill="#F5F5F7" stroke="none"/><circle cx="15.4" cy="8.6" r="1.15" fill="#F5F5F7" stroke="none"/><circle cx="12" cy="12" r="1.15" fill="#F5F5F7" stroke="none"/><circle cx="8.6" cy="15.4" r="1.15" fill="#F5F5F7" stroke="none"/><circle cx="15.4" cy="15.4" r="1.15" fill="#F5F5F7" stroke="none"/></svg>
+        <span>Roll</span>
+      </div>
+      <div class="glass-quiet cap" style="gap: 7px; padding: 0 13px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F5F5F7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4.5V9h-4.5"/></svg>
+        <span>Read</span>
+      </div>
+      <div class="glass-quiet" style="width: 30px; height: 30px; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F5F5F7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8.5" y="8.5" width="12" height="12" rx="3.6"/><path d="M15.5 5.5H6.5a2.5 2.5 0 0 0-2.5 2.5v9"/></svg>
+      </div>
+    </div>
+
+    <!-- The deck, floating in the middle of the stage rather than pinned to
+         the top of it: the inspector sets the window's height, so the keyboard
+         is centred in whatever is left. -->
+    <div style="position: absolute; left: 40px; top: 72px; bottom: 66px; width: 700px; display: flex; align-items: center;">
+     <div style="position: relative; width: 100%;">
+      <div style="position: relative; padding: 15px; border-radius: 24px; background: linear-gradient(180deg, #313136 0%, #1C1C20 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), 0 0 0 0.5px rgba(255,255,255,0.10), 0 14px 28px rgba(0,0,0,0.55);">
+
+        <!-- One bloom for the whole deck rather than a blurred shadow per key:
+             the light still spills, at a sixty-fifth of the paint. -->
+        <div style="position: absolute; inset: -6px; border-radius: 28px; background: radial-gradient(62% 52% at 50% 54%, {{bloomNear}} 0%, rgba(0,0,0,0) 72%); pointer-events: none;"></div>
+
+        <!-- The deck itself: the real CLVX S, US ANSI. Every key sits where it
+             sits on the hardware and carries what is printed on it, and each
+             one takes the colour the effect would put under that key. -->
+        <div style="position: relative; width: 100%; padding-bottom: {{deckRatio}};">
+          <sc-for list="{{keys}}" as="k" hint-placeholder-count="84">
+            <div style="position: absolute; left: {{k.l}}; top: {{k.t}}; width: {{k.w}}; height: {{k.h}};
+                        border-radius: {{k.radius}}; background: {{k.bg}};
+                        box-shadow: inset 0 1px 0 rgba(255,255,255,0.30), inset 0 -1px 0 rgba(0,0,0,0.34);
+                        display: flex; flex-direction: column; align-items: center; justify-content: center;
+                        gap: 1px; overflow: hidden;">
+              <span style="font-size: {{k.fs}}; font-weight: 500; line-height: 1; color: {{k.ink}};">{{k.label}}</span>
+              <span style="font-size: {{k.fs}}; font-weight: 500; line-height: 1; color: {{k.ink}};">{{k.sub}}</span>
+            </div>
+          </sc-for>
+
+          <!-- The touch surface is a region OF the key field, not a pad beside
+               it — that is the whole idea of this keyboard. -->
+          <sc-for list="{{regions}}" as="z" hint-placeholder-count="3">
+            <div style="position: absolute; left: {{z.l}}; top: {{z.t}}; width: {{z.w}}; height: {{z.h}};
+                        border-radius: {{z.radius}}; box-shadow: {{z.ring}}; background: {{z.wash}};
+                        pointer-events: none; display: flex; align-items: flex-end; justify-content: center;">
+              <span style="font-size: 8px; font-weight: 590; letter-spacing: 0.04em; color: rgba(255,255,255,0.85);
+                           background: rgba(0,0,0,0.42); padding: 1px 6px; border-radius: 6px;
+                           transform: translateY(50%);">{{z.caption}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- zone chip, floating on the stage -->
+      <div class="glass-quiet" style="position: absolute; top: -38px; left: 2px; display: inline-flex; align-items: center; gap: 8px; height: 26px; padding: 0 12px; border-radius: 13px;">
+        <div style="width: 7px; height: 7px; border-radius: 50%; background: {{glow}}; box-shadow: 0 0 8px {{glow}};"></div>
+        <span style="font-size: 11px; font-weight: 500;">Keys · Colour wave</span>
+      </div>
+     </div>
+    </div>
+
+    <!-- Inspector, floating glass over the stage. In macOS 26 a sidebar is a
+         pane of glass on top of the content, not a column beside it. -->
+    <div class="glass" style="position: absolute; right: 12px; top: 72px; bottom: 12px; width: 306px; border-radius: 22px; padding: 16px;">
+
+      <div class="glass-quiet" style="display: flex; height: 30px; padding: 2px; border-radius: 15px; margin-bottom: 18px;">
+        <div style="flex: 1; display: flex; align-items: center; justify-content: center; border-radius: 13px; background: rgba(255,255,255,0.24); font-weight: 590; box-shadow: inset 0 0.5px 0 rgba(255,255,255,0.5), 0 1px 3px rgba(0,0,0,0.20);">Keys</div>
+        <div style="flex: 1; display: flex; align-items: center; justify-content: center;" class="dim">Pad</div>
+        <div style="flex: 1; display: flex; align-items: center; justify-content: center;" class="dim">Left</div>
+        <div style="flex: 1; display: flex; align-items: center; justify-content: center;" class="dim">Right</div>
+      </div>
+
+      <div class="hdr">Effect</div>
+      <div class="glass-quiet" style="border-radius: 14px; padding: 4px 12px; margin-bottom: 18px;">
+        <div class="row">
+          <div style="flex: 1;">Style</div>
+          <div class="glass-quiet cap" style="height: 26px; border-radius: 13px; gap: 7px; padding: 0 8px 0 12px;">
+            <span>Colour wave</span>
+            <svg width="11" height="14" viewBox="0 0 11 14" fill="none" stroke="rgba(245,245,247,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5 5.5 3 8 5.5"/><path d="M3 8.5 5.5 11 8 8.5"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="hdr">Colours</div>
+      <div class="glass-quiet" style="border-radius: 14px; padding: 4px 12px; margin-bottom: 18px;">
+        <sc-for list="{{stops}}" as="st" hint-placeholder-count="3">
+          <div class="row">
+            <div style="width: 36px; height: 22px; border-radius: 11px; background: {{st.color}}; box-shadow: inset 0 0 0 0.5px rgba(255,255,255,0.35), 0 0 10px {{st.glow}};"></div>
+            <div style="flex: 1; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.16); position: relative;">
+              <div style="position: absolute; left: {{st.at}}; top: -7px; width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(180deg, #FFFFFF, #E9E9EC); box-shadow: 0 1px 4px rgba(0,0,0,0.4);"></div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div class="hdr">Light</div>
+      <div class="glass-quiet" style="border-radius: 14px; padding: 4px 12px; margin-bottom: 18px;">
+        <sc-for list="{{light}}" as="l" hint-placeholder-count="2">
+          <div class="row">
+            <div style="width: 74px;">{{l.name}}</div>
+            <div style="flex: 1; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.16); position: relative;">
+              <div style="position: absolute; left: 0; top: 0; bottom: 0; width: {{l.pct}}; border-radius: 2px; background: linear-gradient(90deg, {{glow}}, #FFFFFF);"></div>
+              <div style="position: absolute; left: {{l.at}}; top: -7px; width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(180deg, #FFFFFF, #E9E9EC); box-shadow: 0 1px 4px rgba(0,0,0,0.4);"></div>
+            </div>
+            <div class="dim" style="width: 36px; text-align: right; font-variant-numeric: tabular-nums;">{{l.value}}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div class="hdr">Movement</div>
+      <div class="glass-quiet" style="border-radius: 14px; padding: 4px 12px;">
+        <sc-for list="{{move}}" as="m" hint-placeholder-count="2">
+          <div class="row">
+            <div style="width: 74px;">{{m.name}}</div>
+            <div style="flex: 1; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.16); position: relative;">
+              <div style="position: absolute; left: 0; top: 0; bottom: 0; width: {{m.pct}}; border-radius: 2px; background: linear-gradient(90deg, {{glow}}, #FFFFFF);"></div>
+              <div style="position: absolute; left: {{m.at}}; top: -7px; width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(180deg, #FFFFFF, #E9E9EC); box-shadow: 0 1px 4px rgba(0,0,0,0.4);"></div>
+            </div>
+            <div class="dim" style="width: 36px; text-align: right; font-variant-numeric: tabular-nums;">{{m.value}}</div>
+          </div>
+        </sc-for>
+        <div class="row" style="min-height: 78px;">
+          <div style="flex: 1;">
+            <div>Direction</div>
+            <div class="dim" style="font-size: 11px; margin-top: 1px;">75° · up</div>
+          </div>
+          <div class="glass-quiet" style="position: relative; width: 60px; height: 60px; border-radius: 30px;">
+            <div style="position: absolute; left: 30px; top: 30px; width: 2px; height: 22px; border-radius: 1px; background: {{glow}}; transform-origin: 1px 0; transform: rotate(15deg); box-shadow: 0 0 8px {{glow}};"></div>
+            <div style="position: absolute; left: 26px; top: 26px; width: 8px; height: 8px; border-radius: 50%; background: #FFFFFF;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action bar, floating -->
+    <div style="position: absolute; left: 40px; bottom: 22px; display: flex; align-items: center; gap: 10px;">
+      <div class="glass cap" style="gap: 8px;">Copy zone…</div>
+      <div class="glass cap" style="gap: 8px;">Save as Theme…</div>
+      <div class="cap" style="background: linear-gradient(180deg, #3AA0FF, #0A84FF); font-weight: 590; box-shadow: inset 0 1px 0 rgba(255,255,255,0.42), 0 8px 22px rgba(10,132,255,0.42);">Apply to Keyboard</div>
+      <div class="dim" style="font-size: 11px; margin-left: 6px;">Nothing is written until you apply</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"glow":{"editor":"color","default":"#0A84FF","options":["#0A84FF","#30D158","#FF375F","#FF9F0A"],"section":"Lighting"}}'>
+    // LAYOUT-BEGIN (generated from assets/clvx-s-layout.json — do not edit by hand)
+    const LAYOUT = {"unit":{"width":16.29,"height":5.89,"keyGap":0.04},"rows":[{"y":0.226,"h":0.474,"keys":[{"x":0.25,"w":1.26,"label":"esc","sub":"fn lock","size":"small"},{"x":1.55,"w":1,"label":"F1","size":"small"},{"x":2.58,"w":1,"label":"F2","size":"small"},{"x":3.62,"w":1,"label":"F3","size":"small"},{"x":4.66,"w":1,"label":"F4","size":"small"},{"x":5.7,"w":1,"label":"F5","size":"small"},{"x":6.73,"w":1,"label":"F6","size":"small"},{"x":7.77,"w":1,"label":"F7","size":"small"},{"x":8.81,"w":1,"label":"F8","size":"small"},{"x":9.85,"w":1,"label":"F9","size":"small"},{"x":10.88,"w":1,"label":"F10","size":"small"},{"x":11.92,"w":1,"label":"F11","size":"small"},{"x":12.96,"w":1,"label":"F12","size":"small"},{"x":14,"w":1.26,"label":"prtscr","size":"small"},{"x":15.29,"w":1,"label":"del","size":"small"}]},{"y":0.752,"h":1,"keys":[{"x":0.25,"w":1.26,"label":"~","sub":"`"},{"x":1.55,"w":1,"label":"!","sub":"1"},{"x":2.58,"w":1,"label":"@","sub":"2"},{"x":3.62,"w":1,"label":"#","sub":"3"},{"x":4.66,"w":1,"label":"$","sub":"4"},{"x":5.7,"w":1,"label":"%","sub":"5"},{"x":6.73,"w":1,"label":"^","sub":"6"},{"x":7.77,"w":1,"label":"&","sub":"7"},{"x":8.81,"w":1,"label":"*","sub":"8"},{"x":9.85,"w":1,"label":"(","sub":"9"},{"x":10.88,"w":1,"label":")","sub":"0"},{"x":11.92,"w":1,"label":"_","sub":"-"},{"x":12.96,"w":1,"label":"+","sub":"="},{"x":14,"w":1.26,"label":"back","size":"small"},{"x":15.29,"w":1,"label":"home","sub":"fn","size":"small"}]},{"y":1.805,"h":1,"keys":[{"x":0.25,"w":1.51,"label":"tab","size":"small"},{"x":1.8,"w":1,"label":"Q"},{"x":2.84,"w":1,"label":"W"},{"x":3.88,"w":1,"label":"E"},{"x":4.91,"w":1,"label":"R"},{"x":5.95,"w":1,"label":"T"},{"x":6.99,"w":1,"label":"Y"},{"x":8.03,"w":1,"label":"U"},{"x":9.06,"w":1,"label":"I"},{"x":10.1,"w":1,"label":"O"},{"x":11.14,"w":1,"label":"P"},{"x":12.18,"w":1,"label":"{","sub":"["},{"x":13.21,"w":1,"label":"}","sub":"]"},{"x":14.25,"w":1,"label":"|","sub":"\\"},{"x":15.29,"w":1,"label":"pgup","sub":"fn","size":"small"}]},{"y":2.842,"h":1,"keys":[{"x":0.25,"w":1.78,"label":"caps","size":"small","led":1},{"x":2.07,"w":1,"label":"A"},{"x":3.11,"w":1,"label":"S"},{"x":4.15,"w":1,"label":"D"},{"x":5.18,"w":1,"label":"F","homing":1},{"x":6.22,"w":1,"label":"G"},{"x":7.26,"w":1,"label":"H"},{"x":8.3,"w":1,"label":"J","homing":1},{"x":9.33,"w":1,"label":"K"},{"x":10.37,"w":1,"label":"L"},{"x":11.41,"w":1,"label":":","sub":";"},{"x":12.45,"w":1,"label":"\"","sub":"'"},{"x":13.48,"w":1.77,"label":"enter","size":"small"},{"x":15.29,"w":1,"label":"pgdn","sub":"fn","size":"small"}]},{"y":3.88,"h":1,"keys":[{"x":0.25,"w":2.29,"label":"shift","size":"small"},{"x":2.58,"w":1,"label":"Z"},{"x":3.62,"w":1,"label":"X"},{"x":4.66,"w":1,"label":"C"},{"x":5.7,"w":1,"label":"V"},{"x":6.73,"w":1,"label":"B"},{"x":7.77,"w":1,"label":"N"},{"x":8.81,"w":1,"label":"M"},{"x":9.85,"w":1,"label":"<","sub":","},{"x":10.88,"w":1,"label":">","sub":"."},{"x":11.92,"w":1,"label":"?","sub":"/"},{"x":12.96,"w":1.26,"label":"shift","size":"small"},{"x":14.25,"w":1,"label":"▲","size":"small"},{"x":15.29,"w":1,"label":"end","sub":"fn","size":"small"}]},{"y":4.887,"h":1,"keys":[{"x":0.25,"w":1,"label":"ctrl","size":"small"},{"x":1.29,"w":1,"label":"fn","size":"small"},{"x":2.33,"w":1,"label":"⌘","size":"small"},{"x":3.36,"w":1.26,"label":"alt","size":"small"},{"x":4.66,"w":5.15,"label":"","space":1},{"x":9.85,"w":1.26,"label":"alt","size":"small"},{"x":11.14,"w":1,"label":"keys only","size":"tiny"},{"x":12.18,"w":1,"label":"ctrl","size":"small"},{"x":13.21,"w":1,"label":"◀","size":"small"},{"x":14.25,"w":1,"label":"▼","size":"small"},{"x":15.29,"w":1,"label":"▶","size":"small"}]}],"zones":[{"id":"keyboard","name":"Keys","shape":"field"},{"id":"touchpad","name":"Touchpad","shape":"region","x":2.58,"y":0.752,"w":10.34,"h":4.128},{"id":"leftSlider","name":"Left slider","shape":"strip","x":2.58,"y":0.226,"w":5.15,"h":0.474},{"id":"rightSlider","name":"Right slider","shape":"strip","x":7.77,"y":0.226,"w":5.15,"h":0.474}]};
+    // LAYOUT-END
+
+class Component extends DCLogic {
+  hexToHsl(hex) {
+    // Defensive: the colour editor can hand back short or 8-digit hex.
+    let h = String(hex || '').trim().replace('#', '');
+    if (h.length === 3) h = h.split('').map((c) => c + c).join('');
+    if (h.length < 6 || !/^[0-9a-fA-F]{6}/.test(h)) return [211, 1, 0.52];
+    const r = parseInt(h.slice(0, 2), 16) / 255;
+    const g = parseInt(h.slice(2, 4), 16) / 255;
+    const b = parseInt(h.slice(4, 6), 16) / 255;
+    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+    const l = (max + min) / 2;
+    let s = 0, hue = 0;
+    if (max !== min) {
+      const d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      if (max === r) hue = ((g - b) / d + (g < b ? 6 : 0)) * 60;
+      else if (max === g) hue = ((b - r) / d + 2) * 60;
+      else hue = ((r - g) / d + 4) * 60;
+    }
+    return [hue, s, l];
+  }
+
+  hsl(h, s, l, a) {
+    const hh = ((h % 360) + 360) % 360;
+    const ss = Math.max(0, Math.min(1, s)) * 100;
+    const ll = Math.max(0, Math.min(1, l)) * 100;
+    return a === undefined
+      ? 'hsl(' + hh.toFixed(1) + ' ' + ss.toFixed(1) + '% ' + ll.toFixed(1) + '%)'
+      : 'hsl(' + hh.toFixed(1) + ' ' + ss.toFixed(1) + '% ' + ll.toFixed(1) + '% / ' + a + ')';
+  }
+
+  at(t, base) {
+    const [h, s, l] = base;
+    const hue = h + Math.sin(t * Math.PI * 1.15) * 104 - 30;
+    const light = Math.max(0.44, Math.min(0.68, l + Math.sin(t * Math.PI) * 0.08));
+    const sat = Math.max(s, 0.74);
+    return { bg: this.hsl(hue, sat, light), glow: this.hsl(hue, sat, light, 0.55) };
+  }
+
+  renderVals() {
+    const glow = this.props.glow ?? '#0A84FF';
+    const base = this.hexToHsl(glow);
+
+    const U = LAYOUT.unit;
+    const gap = U.keyGap;
+    const pct = (v, span) => (v / span * 100).toFixed(3) + '%';
+
+    // The wave runs across the deck, so a key takes the colour of the point it
+    // physically occupies — which is what the keyboard itself does.
+    const keys = [];
+    for (const row of LAYOUT.rows) {
+      for (const k of row.keys) {
+        const cx = (k.x + k.w / 2) / U.width;
+        const cy = (row.y + row.h / 2) / U.height;
+        const c = this.at(cx * 0.86 + cy * 0.14, base);
+        const small = k.size === 'small' || k.size === 'tiny';
+        keys.push({
+          l: pct(k.x, U.width),
+          t: pct(row.y, U.height),
+          w: pct(Math.max(k.w - gap, 0.1), U.width),
+          h: pct(Math.max(row.h - gap, 0.1), U.height),
+          radius: row.h < 0.6 ? '3px' : '5px',
+          bg: c.bg,
+          label: k.space ? '' : k.label,
+          sub: k.sub ?? '',
+          fs: k.size === 'tiny' ? '5px' : small ? '6px' : '9px',
+          ink: 'rgba(255,255,255,0.92)',
+        });
+      }
+    }
+
+    // The touch surface and the two strips, drawn as what they are: regions of
+    // the key field, outlined over the keys they cover.
+    const regions = LAYOUT.zones.filter((z) => z.shape !== 'field').map((z) => ({
+      l: pct(z.x, U.width),
+      t: pct(z.y, U.height),
+      w: pct(z.w, U.width),
+      h: pct(z.h, U.height),
+      radius: z.shape === 'strip' ? '4px' : '7px',
+      ring: 'inset 0 0 0 1.5px rgba(255,255,255,0.80)',
+      wash: z.shape === 'strip' ? 'rgba(255,255,255,0.14)' : 'rgba(255,255,255,0.07)',
+      caption: z.shape === 'region' ? 'Touch surface — the keys themselves' : '',
+    }));
+
+    const stops = [
+      { ...this.at(0.05, base), at: '2px' },
+      { ...this.at(0.5, base), at: '48px' },
+      { ...this.at(0.95, base), at: '94px' },
+    ].map((s) => ({ color: s.bg, glow: s.glow, at: s.at }));
+
+    return {
+      glow,
+      bloomNear: this.hsl(base[0], Math.max(base[1], 0.74), 0.5, 0.30),
+      bloomFar: this.hsl(base[0], Math.max(base[1], 0.74), 0.42, 0.12),
+      deckRatio: (LAYOUT.unit.height / LAYOUT.unit.width * 100).toFixed(2) + '%',
+      keys,
+      regions,
+      stops,
+      light: [
+        { name: 'Brightness', pct: '100%', at: '90px', value: '100%' },
+        { name: 'Opacity', pct: '100%', at: '90px', value: '100%' },
+      ],
+      move: [
+        { name: 'Speed', pct: '66%', at: '58px', value: '6689' },
+        { name: 'Stretch', pct: '33%', at: '28px', value: '395' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

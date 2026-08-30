@@ -1,0 +1,17 @@
+/target
+**/*.rs.bk
+*.clvx
+
+# Build outputs. Both are reproducible — the signed binary from
+# scripts/release-macos.sh, the handoff package from scripts/design-handoff.sh —
+# and their hashes are recorded in the state document, so keeping the blobs in
+# history only makes the repo heavy.
+/dist
+
+# The seeded design canvas: 2.3 MB of vendored editor payload, rebuilt from the
+# .dc.html sources + canvas.json with the /design skill's seed-canvas.mjs.
+other/design/clevertuna-macos.html
+
+# .NET build output
+windows/**/bin/
+windows/**/obj/

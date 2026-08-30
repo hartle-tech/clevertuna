@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #0A84FF; } a:hover { color: #409CFF; }
+    .mac {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 13px; letter-spacing: -0.005em;
+    }
+    .gd {
+      background: linear-gradient(180deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.11) 46%, rgba(255,255,255,0.07) 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.44), inset 0 0 0 0.5px rgba(255,255,255,0.17), 0 9px 20px rgba(0,0,0,0.36);
+    }
+    .gdq { background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.07));
+           box-shadow: inset 0 0.5px 0 rgba(255,255,255,0.32), inset 0 0 0 0.5px rgba(255,255,255,0.12); }
+    .gl {
+      background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.74) 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.95), inset 0 0 0 0.5px rgba(0,0,0,0.07), 0 6px 16px rgba(30,25,60,0.12);
+    }
+    .cap { display: inline-flex; align-items: center; justify-content: center; height: 30px; padding: 0 15px; border-radius: 15px; }
+    .title { font-size: 11px; font-weight: 590; letter-spacing: 0.035em; text-transform: uppercase; }
+    .mono { font-size: 10px; font-variant-numeric: tabular-nums; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+    .stack { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  </style>
+</helmet>
+
+<div class="mac" style="width: 980px; height: 700px; display: flex; flex-direction: column;">
+
+  <!-- Dark half -->
+  <div style="height: 396px; padding: 22px 26px; position: relative; overflow: hidden; color: #F5F5F7;
+    background:
+      radial-gradient(70% 60% at 14% 4%, #4A3A86 0%, rgba(74,58,134,0) 62%),
+      linear-gradient(160deg, #241F48 0%, #15182E 60%, #0F1220 100%);">
+
+    <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px;">
+      <div style="font-size: 20px; font-weight: 660; letter-spacing: -0.015em;">Clevertuna · the material</div>
+      <div style="color: rgba(245,245,247,0.60);">San Francisco · concentric radii · capsule controls</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 18px;">
+
+      <!-- the recipe -->
+      <div class="gd" style="border-radius: 20px; padding: 16px;">
+        <div class="title" style="color: rgba(245,245,247,0.55); margin-bottom: 12px;">Three layers, no filter</div>
+        <div style="display: flex; flex-direction: column; gap: 9px;">
+          <sc-for list="{{layers}}" as="l" hint-placeholder-count="3">
+            <div style="display: flex; gap: 10px; align-items: flex-start;">
+              <div style="width: 30px; height: 30px; border-radius: 10px; background: {{l.chip}}; box-shadow: {{l.chipShadow}}; flex-shrink: 0;"></div>
+              <div style="min-width: 0;">
+                <div style="font-size: 12px; font-weight: 500;">{{l.name}}</div>
+                <div class="mono" style="color: rgba(245,245,247,0.52); line-height: 1.4; margin-top: 2px;">{{l.css}}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="font-size: 11px; color: rgba(245,245,247,0.55); line-height: 1.5; margin-top: 13px;">
+          Glass only needs something real behind it, so the material is painted rather than filtered — three layers, no live blur, and it reads the same at a fraction of the paint.
+        </div>
+      </div>
+
+      <!-- controls on dark -->
+      <div class="gd" style="border-radius: 20px; padding: 16px 18px;">
+        <div class="title" style="color: rgba(245,245,247,0.55); margin-bottom: 14px;">Controls</div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="stack">
+            <div style="width: 84px; color: rgba(245,245,247,0.58);">Buttons</div>
+            <div class="gdq cap">Save as Theme…</div>
+            <div class="cap" style="background: linear-gradient(180deg, #3AA0FF, #0A84FF); font-weight: 590; box-shadow: inset 0 1px 0 rgba(255,255,255,0.42), 0 8px 20px rgba(10,132,255,0.40);">Apply</div>
+          </div>
+          <div class="stack">
+            <div style="width: 84px; color: rgba(245,245,247,0.58);">Segmented</div>
+            <div class="gdq" style="display: flex; height: 30px; padding: 2px; border-radius: 15px;">
+              <div style="display: flex; align-items: center; padding: 0 14px; border-radius: 13px; background: rgba(255,255,255,0.24); font-weight: 590; box-shadow: inset 0 0.5px 0 rgba(255,255,255,0.5), 0 1px 3px rgba(0,0,0,0.2);">Keys</div>
+              <div style="display: flex; align-items: center; padding: 0 14px; color: rgba(245,245,247,0.62);">Pad</div>
+              <div style="display: flex; align-items: center; padding: 0 14px; color: rgba(245,245,247,0.62);">Left</div>
+            </div>
+          </div>
+          <div class="stack">
+            <div style="width: 84px; color: rgba(245,245,247,0.58);">Pop-up</div>
+            <div class="gdq" style="display: inline-flex; align-items: center; gap: 7px; height: 26px; padding: 0 8px 0 12px; border-radius: 13px;">
+              <span>Colour wave</span>
+              <svg width="11" height="14" viewBox="0 0 11 14" fill="none" stroke="rgba(245,245,247,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5 5.5 3 8 5.5"/><path d="M3 8.5 5.5 11 8 8.5"/></svg>
+            </div>
+          </div>
+          <div class="stack">
+            <div style="width: 84px; color: rgba(245,245,247,0.58);">Slider</div>
+            <div style="width: 190px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.16); position: relative;">
+              <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 62%; border-radius: 2px; background: linear-gradient(90deg, #0A84FF, #FFFFFF);"></div>
+              <div style="position: absolute; left: 109px; top: -7px; width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(180deg, #FFFFFF, #E9E9EC); box-shadow: 0 1px 4px rgba(0,0,0,0.4);"></div>
+            </div>
+          </div>
+          <div class="stack">
+            <div style="width: 84px; color: rgba(245,245,247,0.58);">Tile</div>
+            <div class="gdq" style="width: 74px; border-radius: 13px; padding: 7px;">
+              <div style="height: 30px; border-radius: 9px; background: linear-gradient(115deg,#5A0000,#FF3C00 40%,#FFB100 82%,#FFE03A); box-shadow: inset 0 0.5px 0 rgba(255,255,255,0.35), 0 0 12px rgba(255,90,0,0.45);"></div>
+              <div style="display: flex; gap: 4px; align-items: baseline; margin-top: 6px;">
+                <div style="flex: 1; font-size: 11px; font-weight: 500;">Magma</div>
+                <div style="font-size: 11px; color: rgba(245,245,247,0.55);">⌃⌥4</div>
+              </div>
+            </div>
+            <div style="font-size: 11px; color: rgba(245,245,247,0.55); max-width: 250px; line-height: 1.5;">
+              The quick surface is tiles: one tap applies, and the key beside it does the same without opening anything.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Light half -->
+  <div style="flex: 1; padding: 20px 26px; color: #1D1D1F;
+    background: radial-gradient(70% 70% at 16% 0%, #E6E0F8 0%, rgba(230,224,248,0) 60%),
+                linear-gradient(160deg, #EFEDF4 0%, #E9EAEF 100%);">
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start;">
+
+      <div class="gl" style="border-radius: 18px; padding: 14px 16px;">
+        <div class="title" style="color: #86868B; margin-bottom: 11px;">The same material, light</div>
+        <div class="stack" style="gap: 10px;">
+          <div class="cap" style="background: linear-gradient(180deg,#FFFFFF,#F6F6F8); box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.10), 0 1px 2px rgba(0,0,0,0.07);">Rename…</div>
+          <div class="cap" style="background: linear-gradient(180deg, #3E9BFF, #0A6FE8); color: #FFFFFF; font-weight: 590; box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 6px 16px rgba(10,111,232,0.34);">Apply</div>
+          <div style="width: 40px; height: 24px; border-radius: 12px; background: linear-gradient(180deg,#34D75B,#28BF4C); position: relative;">
+            <div style="position: absolute; top: 2px; left: 18px; width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(180deg,#FFFFFF,#F2F2F5); box-shadow: 0 1px 3px rgba(0,0,0,0.28);"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gl" style="border-radius: 18px; padding: 14px 16px;">
+        <div class="title" style="color: #86868B; margin-bottom: 11px;">Radii, concentric</div>
+        <div style="font-size: 11px; line-height: 1.8; color: #4B4B4F;">
+          <sc-for list="{{radii}}" as="r" hint-placeholder-count="5">
+            <div style="display: flex; align-items: center; gap: 9px;">
+              <div style="width: 22px; height: 22px; border-radius: {{r.px}}; background: #FFFFFF; box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.16);"></div>
+              <span style="flex: 1;">{{r.name}}</span>
+              <span class="mono" style="color: #A1A1A6;">{{r.px}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div class="gl" style="border-radius: 18px; padding: 14px 16px;">
+        <div class="title" style="color: #86868B; margin-bottom: 11px;">Type</div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div><div style="font-size: 30px; font-weight: 680; letter-spacing: -0.02em; line-height: 1.05;">Magma</div><div class="mono" style="color: #A1A1A6;">30 / 680 · subject</div></div>
+          <div><div style="font-size: 17px; font-weight: 640;">Touch</div><div class="mono" style="color: #A1A1A6;">17 / 640 · pane</div></div>
+          <div><div style="font-size: 13px;">Two-finger tap</div><div class="mono" style="color: #A1A1A6;">13 / 400 · body</div></div>
+          <div><div style="font-size: 11px; color: #86868B;">Not on this keyboard</div><div class="mono" style="color: #A1A1A6;">11 / 400 · secondary</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      layers: [
+        {
+          name: 'Body',
+          css: 'linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.07))',
+          chip: 'linear-gradient(180deg, rgba(255,255,255,0.20), rgba(255,255,255,0.07))',
+          chipShadow: 'inset 0 0 0 0.5px rgba(255,255,255,0.18)',
+        },
+        {
+          name: 'Specular rim',
+          css: 'inset 0 1px 0 rgba(255,255,255,.44)  ·  inset 0 0 0 .5px rgba(255,255,255,.17)',
+          chip: 'transparent',
+          chipShadow: 'inset 0 1px 0 rgba(255,255,255,0.85), inset 0 0 0 0.5px rgba(255,255,255,0.30)',
+        },
+        {
+          name: 'Lift',
+          css: '0 14px 34px rgba(0,0,0,.36)',
+          chip: 'rgba(255,255,255,0.06)',
+          chipShadow: '0 8px 18px rgba(0,0,0,0.55)',
+        },
+      ],
+      radii: [
+        { name: 'Window', px: '26px' },
+        { name: 'Floating panel', px: '22px' },
+        { name: 'Group', px: '18px' },
+        { name: 'Tile', px: '13px' },
+        { name: 'Control', px: '15px' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

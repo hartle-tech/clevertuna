@@ -1,0 +1,58 @@
+Clevertuna
+Copyright 2026 HARTLE.TECH
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+────────────────────────────────────────────────────────────────────────────
+PROVENANCE
+────────────────────────────────────────────────────────────────────────────
+
+This is an independent implementation of the Clevetura CLVX configuration
+protocol, written for interoperability: to let owners of the hardware move
+their own settings between their own machines, which the vendor software
+provides no way to do.
+
+The wire format was determined by inspecting a device the author owns and by
+observing the format used by the vendor's own application, which ships
+unminified TypeScript — including its generated protobuf definitions — in the
+source maps of its published Electron bundle.
+
+What was taken from that observation is limited to facts about the protocol,
+which are not protectable expression and which any correct implementation must
+agree on:
+
+  - HID report IDs, packet sizes and the end-of-packet byte
+  - the base64 and CRC-32 framing
+  - protobuf field numbers and enum values
+  - the GATT service and characteristic UUIDs
+  - message and field names, field numbers, wire types and enum values for the
+    settings tree, taken from those published definitions
+  - the units and closed ranges each stored value accepts, and the arithmetic
+    relating them to the controls a person sets: that opacity is the complement
+    of transparency, that speed and period run the same scale from opposite
+    ends, and that a gradient angle is ninety degrees off the stored direction
+
+Those last ones are as much facts about the hardware as the field numbers are:
+two correct implementations have no choice but to agree on them, or the device
+refuses what they write. They are recorded in docs/PROTOCOL.md §7 so that this
+project reads as specification-derived, because it is.
+
+No vendor source code, comments, constant tables, file layout or function
+decomposition were copied, and none is redistributed here. Nothing expressive
+was taken: the themes, palettes, colour names, window layout, icons and wording
+in this project are its own, and were not modelled on the vendor application's.
+Every line of this project was written from the protocol description in
+docs/PROTOCOL.md.
+
+Not affiliated with, endorsed by, or supported by Clevetura. "Clevetura",
+"CLVX" and "TouchOnKeys" are the property of their respective owner.

@@ -1,0 +1,261 @@
+{
+  "clvx_backlight": 1,
+  "backlight": {
+    "keyboard": {
+      "interactiveAnimation": {
+        "color": {
+          "red": 0,
+          "green": 57,
+          "blue": 255
+        },
+        "enable": true,
+        "duration": 3
+      },
+      "colorWave": {
+        "colorLinePicker": {
+          "markersNumber": 5,
+          "markersArray": [
+            {
+              "color": {
+                "red": 255,
+                "green": 83,
+                "blue": 83
+              },
+              "transparency": 0,
+              "position": 5
+            },
+            {
+              "color": {
+                "red": 0,
+                "green": 200,
+                "blue": 255
+              },
+              "transparency": 0,
+              "position": 29
+            },
+            {
+              "color": {
+                "red": 255,
+                "green": 255,
+                "blue": 255
+              },
+              "transparency": 0,
+              "position": 51
+            },
+            {
+              "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 232
+              },
+              "transparency": 0,
+              "position": 78
+            },
+            {
+              "color": {
+                "red": 0,
+                "green": 194,
+                "blue": 255
+              },
+              "transparency": 0,
+              "position": 99
+            }
+          ]
+        },
+        "period": 3000,
+        "direction": 270,
+        "length": 1000
+      },
+      "transparency": 0
+    },
+    "touchpad": {
+      "interactiveAnimation": {
+        "color": {
+          "red": 255,
+          "green": 88,
+          "blue": 227
+        },
+        "enable": true,
+        "trace": 2
+      },
+      "colorWave": {
+        "colorLinePicker": {
+          "markersNumber": 5,
+          "markersArray": [
+            {
+              "color": {
+                "red": 0,
+                "green": 255,
+                "blue": 29
+              },
+              "transparency": 0,
+              "position": 0
+            },
+            {
+              "color": {
+                "red": 255,
+                "green": 177,
+                "blue": 0
+              },
+              "transparency": 0,
+              "position": 21
+            },
+            {
+              "color": {
+                "red": 255,
+                "green": 255,
+                "blue": 255
+              },
+              "transparency": 18,
+              "position": 49
+            },
+            {
+              "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 69
+              },
+              "transparency": 0,
+              "position": 75
+            },
+            {
+              "color": {
+                "red": 182,
+                "green": 0,
+                "blue": 255
+              },
+              "transparency": 0,
+              "position": 95
+            }
+          ]
+        },
+        "period": 8283,
+        "direction": 90,
+        "length": 100
+      },
+      "transparency": 0
+    },
+    "leftSlider": {
+      "interactiveAnimation": {
+        "enable": true
+      },
+      "colorWave": {
+        "colorLinePicker": {
+          "markersNumber": 5,
+          "markersArray": [
+            {
+              "color": {
+                "red": 0,
+                "green": 255,
+                "blue": 241
+              },
+              "transparency": 0,
+              "position": 11
+            },
+            {
+              "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 255
+              },
+              "transparency": 0,
+              "position": 33
+            },
+            {
+              "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+              },
+              "transparency": 0,
+              "position": 50
+            },
+            {
+              "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+              },
+              "transparency": 0,
+              "position": 69
+            },
+            {
+              "color": {
+                "red": 255,
+                "green": 191,
+                "blue": 0
+              },
+              "transparency": 0,
+              "position": 87
+            }
+          ]
+        },
+        "period": 3930,
+        "direction": 180,
+        "length": 100
+      },
+      "transparency": 30
+    },
+    "rightSlider": {
+      "interactiveAnimation": {
+        "enable": true
+      },
+      "colorWave": {
+        "colorLinePicker": {
+          "markersNumber": 5,
+          "markersArray": [
+            {
+              "color": {
+                "red": 0,
+                "green": 255,
+                "blue": 64
+              },
+              "transparency": 0,
+              "position": 12
+            },
+            {
+              "color": {
+                "red": 0,
+                "green": 255,
+                "blue": 228
+              },
+              "transparency": 0,
+              "position": 30
+            },
+            {
+              "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+              },
+              "transparency": 0,
+              "position": 50
+            },
+            {
+              "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 212
+              },
+              "transparency": 0,
+              "position": 72
+            },
+            {
+              "color": {
+                "red": 189,
+                "green": 0,
+                "blue": 255
+              },
+              "transparency": 0,
+              "position": 91
+            }
+          ]
+        },
+        "period": 7587,
+        "direction": 0,
+        "length": 160
+      },
+      "transparency": 30
+    }
+  }
+}

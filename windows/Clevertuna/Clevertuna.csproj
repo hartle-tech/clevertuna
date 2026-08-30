@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Clevertuna for Windows.
+
+    WinUI 3 is where Fluent's real materials live — Mica and Acrylic are drawn
+    by the compositor, the same way Liquid Glass is on macOS, and neither is
+    reachable from Rust. That is the whole reason this exists as C#; see
+    wiki/decisions/0001-one-language-per-platform.md.
+
+    The keyboard model and the layout are plain .NET and build anywhere, which
+    is what lets them be tested on a Mac. The windowing layer needs the Windows
+    SDK, so it is compiled only when targeting Windows.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>Clevertuna</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Keyboard.cs" />
+    <Compile Include="Look.cs" />
+    <Compile Include="DeviceService.cs" />
+  </ItemGroup>
+
+  <!-- The layout table is shared with the Rust core and the macOS app. -->
+  <ItemGroup>
+    <None Include="../../assets/clvx-s-layout.json" CopyToOutputDirectory="PreserveNewest" Link="clvx-s-layout.json" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,238 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #0A84FF; } a:hover { color: #409CFF; }
+    .mac {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 13px; letter-spacing: -0.005em; color: #F5F5F7;
+    }
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.11) 46%, rgba(255,255,255,0.07) 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.44),
+        inset 0 0 0 0.5px rgba(255,255,255,0.17),
+        0 10px 22px rgba(0,0,0,0.40);
+    }
+    .tile { background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.07));
+            box-shadow: inset 0 0.5px 0 rgba(255,255,255,0.32), inset 0 0 0 0.5px rgba(255,255,255,0.12); }
+    .dim { color: rgba(245,245,247,0.62); }
+    .key { font-size: 11px; color: rgba(245,245,247,0.55); font-variant-numeric: tabular-nums; }
+    .listhdr { font-size: 11px; font-weight: 590; letter-spacing: 0.03em; color: rgba(245,245,247,0.50); padding: 12px 10px 5px; }
+    .item { display: flex; align-items: center; gap: 10px; height: 34px; padding: 0 10px; border-radius: 17px; margin-bottom: 2px; }
+    .cap { display: inline-flex; align-items: center; justify-content: center; height: 30px; padding: 0 15px; border-radius: 15px; }
+    .meta { display: flex; align-items: baseline; gap: 14px; padding: 10px 0; box-shadow: inset 0 -0.5px 0 rgba(255,255,255,0.12); }
+    .metalabel { width: 92px; text-align: right; color: rgba(245,245,247,0.55); flex-shrink: 0; }
+
+    /* The room under the controls, given to the theme itself. A theme we ship
+       knows what it is — magma burns, tides move like water — so the space
+       plays that rather than sitting empty. A theme you built is yours, and
+       gets a drawn lattice instead of a picture of something it is not.
+       Painted gradients on a slow transform: no canvas, no per-frame work. */
+    .amb { position: absolute; inset: 0; overflow: hidden; pointer-events: none; border-radius: 22px; }
+    .amb > i { position: absolute; display: block; }
+
+    .fire-a, .fire-b {
+      left: -20%; right: -20%; bottom: -30%; height: 150%;
+      background:
+        radial-gradient(46% 40% at 22% 100%, rgba(255,92,0,0.60) 0%, rgba(255,92,0,0) 70%),
+        radial-gradient(38% 46% at 54% 100%, rgba(255,196,0,0.52) 0%, rgba(255,196,0,0) 72%),
+        radial-gradient(44% 38% at 82% 100%, rgba(206,20,0,0.55) 0%, rgba(206,20,0,0) 70%);
+      animation: rise 9s ease-in-out infinite alternate;
+    }
+    .fire-b { animation-duration: 13s; animation-delay: -4s; opacity: 0.7; }
+    @keyframes rise {
+      from { transform: translate3d(-3%, 6%, 0) scaleY(1); }
+      to   { transform: translate3d(3%, -4%, 0) scaleY(1.16); }
+    }
+
+    .water-a, .water-b {
+      left: -25%; right: -25%; bottom: -10%; height: 120%;
+      background:
+        radial-gradient(60% 34% at 30% 92%, rgba(0,140,220,0.50) 0%, rgba(0,140,220,0) 74%),
+        radial-gradient(52% 30% at 72% 84%, rgba(0,214,190,0.42) 0%, rgba(0,214,190,0) 72%),
+        repeating-linear-gradient(96deg, rgba(255,255,255,0.055) 0 2px, rgba(255,255,255,0) 2px 26px);
+      animation: swell 11s ease-in-out infinite alternate;
+    }
+    .water-b { animation-duration: 17s; animation-delay: -6s; opacity: 0.65; }
+    @keyframes swell {
+      from { transform: translate3d(-4%, 2%, 0) skewY(-0.6deg); }
+      to   { transform: translate3d(4%, -2%, 0) skewY(0.6deg); }
+    }
+
+    .wire-a, .wire-b {
+      left: -30%; right: -30%; top: -30%; bottom: -30%;
+      background:
+        repeating-linear-gradient(60deg, rgba(255,255,255,0.13) 0 1px, rgba(255,255,255,0) 1px 44px),
+        repeating-linear-gradient(-60deg, rgba(255,255,255,0.10) 0 1px, rgba(255,255,255,0) 1px 44px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.07) 0 1px, rgba(255,255,255,0) 1px 44px);
+      animation: drift 26s linear infinite;
+    }
+    .wire-b { animation-duration: 41s; animation-direction: reverse; opacity: 0.5; }
+    @keyframes drift {
+      from { transform: translate3d(0, 0, 0) rotate(0deg); }
+      to   { transform: translate3d(-6%, 4%, 0) rotate(6deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .amb > i { animation: none; }
+    }
+  </style>
+</helmet>
+
+<div class="mac" style="width: 940px; height: 640px; display: flex; align-items: center; justify-content: center; background: #0A0A0C; padding: 20px;">
+
+  <div style="position: relative; width: 900px; height: 600px; border-radius: 26px; overflow: hidden; box-shadow: 0 0 0 0.5px rgba(255,255,255,0.14), 0 16px 36px rgba(0,0,0,0.55);">
+
+    <!-- The selected theme IS the window's backdrop, so every pane of glass on
+         top of it is tinted by the light it describes. -->
+    <div style="position: absolute; inset: 0; background: linear-gradient(118deg, #3A0A00 0%, #8E1E00 22%, #FF3C00 46%, #FF7A2E 64%, #FFB100 82%, #FFE03A 100%);"></div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(120% 90% at 30% 0%, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.52) 62%, rgba(0,0,0,0.74) 100%);"></div>
+
+    <!-- Source list -->
+    <div class="glass" style="position: absolute; left: 12px; top: 12px; bottom: 12px; width: 258px; border-radius: 22px; display: flex; flex-direction: column; padding: 0 8px 10px;">
+      <div style="height: 46px; display: flex; align-items: center; gap: 8px; padding: 0 10px;">
+        <div style="width: 12px; height: 12px; border-radius: 50%; background: #FF5F57; box-shadow: inset 0 0.5px 0 rgba(255,255,255,0.4);"></div>
+        <div style="width: 12px; height: 12px; border-radius: 50%; background: #FEBC2E; box-shadow: inset 0 0.5px 0 rgba(255,255,255,0.4);"></div>
+        <div style="width: 12px; height: 12px; border-radius: 50%; background: #28C840; box-shadow: inset 0 0.5px 0 rgba(255,255,255,0.4);"></div>
+      </div>
+
+      <div class="tile" style="display: flex; align-items: center; gap: 7px; height: 28px; padding: 0 11px; border-radius: 14px; margin: 0 2px 4px;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(245,245,247,0.6)" stroke-width="1.9" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+        <span class="dim">Search</span>
+      </div>
+
+      <div style="flex: 1; overflow: hidden; padding: 0 2px;">
+        <sc-for list="{{sections}}" as="sec" hint-placeholder-count="3">
+          <div class="listhdr">{{sec.title}}</div>
+          <sc-for list="{{sec.items}}" as="it" hint-placeholder-count="3">
+            <div class="item" style="background: {{it.bg}}; box-shadow: {{it.ring}};">
+              <div style="width: 30px; height: 20px; border-radius: 10px; background: {{it.swatch}}; box-shadow: inset 0 0.5px 0 rgba(255,255,255,0.35); flex-shrink: 0;"></div>
+              <div style="flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: {{it.weight}};">{{it.name}}</div>
+              <div class="key">{{it.key}}</div>
+            </div>
+          </sc-for>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 4px; padding: 8px 6px 0; box-shadow: inset 0 0.5px 0 rgba(255,255,255,0.12);">
+        <div class="tile" style="width: 26px; height: 26px; border-radius: 13px; display: flex; align-items: center; justify-content: center;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F5F5F7" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <div class="tile" style="width: 26px; height: 26px; border-radius: 13px; display: flex; align-items: center; justify-content: center;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F5F5F7" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail, floating -->
+    <div style="position: absolute; left: 286px; right: 12px; top: 12px; bottom: 12px; display: flex; flex-direction: column; gap: 12px;">
+
+      <div style="display: flex; align-items: flex-start; gap: 12px;">
+        <div style="flex: 1;">
+          <div style="font-size: 30px; font-weight: 680; letter-spacing: -0.02em; text-shadow: 0 2px 14px rgba(0,0,0,0.45);">Magma</div>
+          <div style="color: rgba(245,245,247,0.80); margin-top: 3px; text-shadow: 0 1px 8px rgba(0,0,0,0.4);">Black-red to gold, welling upward</div>
+        </div>
+        <div class="glass cap">Rename…</div>
+        <div class="cap" style="background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,255,255,0.78)); color: #1D1D1F; font-weight: 590; box-shadow: inset 0 1px 0 rgba(255,255,255,1), 0 8px 22px rgba(0,0,0,0.30);">Apply</div>
+      </div>
+
+      <!-- The room the controls leave, given to the theme. -->
+      <div style="position: relative; flex: 1; min-height: 0;">
+        <div class="amb">
+          <i class="{{amb}}-a"></i>
+          <i class="{{amb}}-b"></i>
+        </div>
+        <div style="position: absolute; left: 2px; bottom: 8px; font-size: 11px; color: rgba(255,255,255,0.62);">{{ambNote}}</div>
+      </div>
+
+      <!-- the specimen sits underneath as the window itself; the glass card
+           carries only what you cannot see by looking -->
+      <div class="glass" style="border-radius: 22px; padding: 14px 18px;">
+        <div style="display: flex; gap: 8px; margin-bottom: 14px;">
+          <sc-for list="{{stops}}" as="s" hint-placeholder-count="5">
+            <div style="flex: 1;">
+              <div style="height: 26px; border-radius: 13px; background: {{s.hex}}; box-shadow: inset 0 0.5px 0 rgba(255,255,255,0.4);"></div>
+              <div class="key" style="margin-top: 6px; text-align: center;">{{s.hex}}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div class="meta"><div class="metalabel">Where from</div><div style="flex: 1;">Built in · Moving</div></div>
+        <div class="meta"><div class="metalabel">Effect</div><div style="flex: 1;">Colour wave, upward, 4 s</div></div>
+        <div class="meta" style="box-shadow: none;">
+          <div class="metalabel">Shortcut</div>
+          <div style="flex: 1; display: flex; align-items: center; gap: 12px;">
+            <div class="tile" style="display: inline-flex; align-items: center; gap: 7px; height: 26px; padding: 0 8px 0 12px; border-radius: 13px;">
+              <span style="font-variant-numeric: tabular-nums;">⌃⌥4</span>
+              <svg width="11" height="14" viewBox="0 0 11 14" fill="none" stroke="rgba(245,245,247,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5 5.5 3 8 5.5"/><path d="M3 8.5 5.5 11 8 8.5"/></svg>
+            </div>
+            <span class="dim" style="font-size: 11px;">Works from any app</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const row = (name, key, swatch, on) => ({
+      name, key, swatch,
+      bg: on ? 'rgba(255,255,255,0.24)' : 'transparent',
+      ring: on ? 'inset 0 0.5px 0 rgba(255,255,255,0.5), inset 0 0 0 1px rgba(255,255,255,0.22)' : 'none',
+      weight: on ? '590' : '400',
+    });
+    return {
+      sections: [
+        {
+          title: 'Steady',
+          items: [
+            row('Deep Current', '⌃⌥3', '#00C8FF', false),
+            row('Amber Desk', '', '#FFB100', false),
+            row('Nightshift', '', '#0B1470', false),
+          ],
+        },
+        {
+          title: 'Moving',
+          items: [
+            row('HARTLE', '', 'linear-gradient(100deg,#00C8FF,#36F0B1 30%,#FF00E8 58%,#FF5353 80%,#FFB100)', false),
+            row('Magma', '⌃⌥4', 'linear-gradient(100deg,#5A0000,#FF3C00 32%,#FF5353 56%,#FFB100 80%,#FFE03A)', true),
+            row('Aurora', '', 'linear-gradient(100deg,#00C8FF,#505AFF 38%,#C83CFF 70%,#28DCB4)', false),
+          ],
+        },
+        {
+          title: 'Yours',
+          items: [
+            row('Lemon Pop', '⌃⌥5', 'linear-gradient(100deg,#4A21CF,#C7A12E 52%,#2ECF19)', false),
+            row('HARTLE brand', '', 'linear-gradient(100deg,#00C8FF,#36F0B1 30%,#FF00E8 58%,#FF5353 80%,#FFB100)', false),
+          ],
+        },
+      ],
+      // What a theme we ship knows about itself. Magma burns; the cyan ones
+      // move like water. A theme you built gets a lattice rather than a
+      // picture of something it is not.
+      amb: 'fire',
+      ambNote: 'Magma · built in',
+      stops: [
+        { hex: '#5A0000', glow: 'rgba(90,0,0,0.6)' },
+        { hex: '#FF3C00', glow: 'rgba(255,60,0,0.55)' },
+        { hex: '#FF5353', glow: 'rgba(255,83,83,0.5)' },
+        { hex: '#FFB100', glow: 'rgba(255,177,0,0.5)' },
+        { hex: '#FFE03A', glow: 'rgba(255,224,58,0.45)' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

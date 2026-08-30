@@ -1,0 +1,6 @@
+/* Colour is a hint, not the message: the tooltip states the transport in
+   words, so this still reads correctly without it. */
+#custom-clevertuna { padding: 0 10px; }
+#custom-clevertuna.connected-usb { color: #00C8FF; }
+#custom-clevertuna.connected-ble { color: #36F0B1; }
+#custom-clevertuna.disconnected  { color: #8A8B8B; opacity: 0.6; }
