@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 180" role="img" aria-labelledby="title desc">
+  <title id="title">Clevertuna wordmark</title>
+  <desc id="desc">The word Clevertuna in a rounded geometric uppercase style, with Tuna in magenta.</desc>
+  <g font-family="Sora, Avenir Next, Montserrat, sans-serif" font-size="108" font-weight="700" letter-spacing="5">
+    <text x="12" y="126" fill="#1C1949">CLEVER</text>
+    <text x="500" y="126" fill="#FF00E8">TUNA</text>
+  </g>
+  <path d="M19 151h840" stroke="#00C8FF" stroke-width="8" stroke-linecap="round"/>
+  <path d="M795 151h64" stroke="#36F0B1" stroke-width="8" stroke-linecap="round"/>
+</svg>

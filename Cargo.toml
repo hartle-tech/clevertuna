@@ -1,0 +1,32 @@
+[package]
+name = "clevertuna"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.70"
+description = "Read the current — a rather cultivated Clevetura CLVX keyboard configurator"
+authors = ["HARTLE.TECH <contact@hartle.tech>"]
+license = "Apache-2.0"
+repository = "https://github.com/hartle-tech/clevertuna"
+readme = "README.md"
+keywords = ["keyboard", "hid", "clevetura", "clvx", "backlight"]
+categories = ["command-line-utilities", "hardware-support"]
+
+# No dependencies, on purpose.
+#
+# This talks to a keyboard over raw HID and, on Linux, over BlueZ. Everything it
+# needs — file descriptors, a tiny protobuf codec, JSON, and argument parsing —
+# is small enough to own outright. The payoff is a single self-contained binary
+# that builds offline, has no supply chain to audit, and cannot rot when a
+# transitive crate does.
+[dependencies]
+
+[[bin]]
+name = "clevertuna"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

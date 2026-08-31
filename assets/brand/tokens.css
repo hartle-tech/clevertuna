@@ -1,0 +1,41 @@
+:root {
+  --ct-abyss: #1c1949;
+  --ct-ink: #07101f;
+  --ct-reef: #0096ff;
+  --ct-current: #00c8ff;
+  --ct-mint: #36f0b1;
+  --ct-trench: #ff00e8;
+  --ct-coral: #ff5353;
+  --ct-amber: #ffb100;
+  --ct-foam: #f4f7fb;
+  --ct-white: #ffffff;
+  --ct-mist: #d7dde3;
+  --ct-muted: #8a8b8b;
+
+  --ct-gradient-current: linear-gradient(112deg, #0096ff 0%, #00c8ff 52%, #36f0b1 100%);
+  --ct-gradient-spectral: linear-gradient(90deg, #ff5353 0%, #00c8ff 29%, #ffffff 51%, #ff00e8 78%, #00c2ff 100%);
+
+  --ct-font-display: "Sora", "Avenir Next", sans-serif;
+  --ct-font-body: "Inter", system-ui, sans-serif;
+  --ct-font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+
+  --ct-radius-sm: 8px;
+  --ct-radius-md: 14px;
+  --ct-radius-lg: 22px;
+  --ct-radius-pill: 999px;
+
+  --ct-space-1: 4px;
+  --ct-space-2: 8px;
+  --ct-space-3: 12px;
+  --ct-space-4: 16px;
+  --ct-space-6: 24px;
+  --ct-space-8: 32px;
+  --ct-space-12: 48px;
+
+  --ct-motion-quick: 120ms;
+  --ct-motion-base: 180ms;
+  --ct-motion-slow: 280ms;
+}
+
+/* ANSI fallback: abyss=17, reef/current=39, mint=48, trench=201,
+   coral=203, amber=214, foam=255, muted=245. Always print a label too. */

@@ -1,0 +1,70 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "title": "Theme Builder",
+      "x": 0,
+      "y": 0,
+      "w": 1120,
+      "h": 760
+    },
+    {
+      "file": "MenuBar.dc.html",
+      "title": "Helper menu",
+      "x": 1200,
+      "y": 0,
+      "w": 420,
+      "h": 560
+    },
+    {
+      "file": "Settings.dc.html",
+      "title": "Settings",
+      "x": 0,
+      "y": 880,
+      "w": 940,
+      "h": 660
+    },
+    {
+      "file": "Themes.dc.html",
+      "title": "Themes",
+      "x": 1020,
+      "y": 880,
+      "w": 940,
+      "h": 640
+    },
+    {
+      "file": "Kit.dc.html",
+      "title": "The material",
+      "x": 0,
+      "y": 1660,
+      "w": 980,
+      "h": 700
+    }
+  ],
+  "annotations": [
+    {
+      "id": "direction",
+      "x": 0,
+      "y": -190,
+      "w": 560,
+      "text": "Clevertuna in Liquid Glass.\n\nPanels float over the content rather than sitting beside it — a toolbar, a sidebar and an inspector as panes of glass on top of the deck. Capsule controls, concentric radii, specular rims. The glass is tinted by whatever it is over, which for this app means the keyboard's own light."
+    },
+    {
+      "id": "helper",
+      "x": 1200,
+      "y": 780,
+      "w": 340,
+      "text": "The helper menu stays, and stays the quick surface: brightness, six themes as tiles, and the two smart ones — every row one tap, each with the key that does the same without opening anything. Only Builder and Settings open a window, which is why they sit apart at the bottom."
+    },
+    {
+      "id": "nofilter",
+      "x": 1040,
+      "y": 1660,
+      "w": 340,
+      "text": "Why no backdrop-filter:\n\nnot because it stalls the preview — it doesn't. An artboard preview is a sandboxed iframe that has to answer the editor within 1.5 s of loading, and on a busy machine every board misses that together, blur or no blur; a reload rescues some. The material is painted because three layers over content that is genuinely there read the same as a live blur, at a fraction of the paint."
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}

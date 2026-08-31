@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    These run on any platform, which is the point: the keyboard model and the
+    layout are plain .NET so they can be tested from the machine the work is
+    done on rather than only on Windows.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Clevertuna.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Clevertuna/Clevertuna.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../assets/clvx-s-layout.json" CopyToOutputDirectory="PreserveNewest" Link="clvx-s-layout.json" />
+  </ItemGroup>
+
+</Project>

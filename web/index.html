@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Clevertuna — lighting for the Clevetura CLVX keyboard</title>
+<meta name="description" content="A native macOS app and a single Linux binary for the Clevetura CLVX keyboard. See a theme running before you send it, keep the ones you like as files, and read your keyboard back.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/mark.svg" type="image/svg+xml" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="clevertuna.css">
+<meta property="og:title" content="Clevertuna">
+<meta property="og:description" content="Lighting for the Clevetura CLVX keyboard. Open source, no account, no telemetry.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://clevertuna.hartle.tech/">
+</head>
+<body>
+
+<a class="skip" href="#what">Skip to content</a>
+
+<header class="bar" id="bar">
+  <a class="wordmark" href="#top" aria-label="Clevertuna">
+    <svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true">
+      <rect width="32" height="32" rx="8" fill="url(#wordmark-grad)"/>
+      <defs><linearGradient id="wordmark-grad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#00c8ff"/><stop offset="1" stop-color="#36f0b1"/>
+      </linearGradient></defs>
+      <path d="M5 20.5 C8.5 20.5 8.5 11.5 12.5 11.5 S16.5 20.5 20 20.5 S27 11.5 27 11.5"
+            fill="none" stroke="#04121a" stroke-width="4.6"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span>Clevertuna</span>
+  </a>
+  <nav>
+    <a href="#what">Features</a>
+    <a href="#compare">Compare</a>
+    <a href="/docs/">Docs</a>
+    <a href="#writeup">Protocol</a>
+    <a href="#support">Support</a>
+    <a href="#get" class="cta">Download</a>
+  </nav>
+</header>
+
+<main id="top">
+
+<!-- ─────────────────────────────── hero ─────────────────────────────── -->
+<section class="hero">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <p class="eyebrow" data-reveal>For the Clevetura CLVX</p>
+    <h1 data-reveal>
+      Lighting for your CLVX,<br>
+      <span class="grad">without the vendor's app.</span>
+    </h1>
+    <p class="lede" data-reveal>
+      A menu bar app for the everyday things, a builder for the rest, and a
+      preview that shows a theme running before anything is written.
+    </p>
+    <ul class="does" data-reveal>
+      <li><b>Themes as files</b> — export, import, send one to a friend</li>
+      <li><b>Match your wallpaper</b> — one press, video wallpapers included</li>
+      <li><b>Clone to every slot</b> — the cable and all three Bluetooth channels</li>
+      <li><b>Change on a schedule</b> — warm at night, bright at nine</li>
+      <li><b>Remap the function row</b> — F1–F12, written and verified</li>
+      <li><b>Read the board back</b> — see what is actually on it</li>
+    </ul>
+    <div class="actions" data-reveal>
+      <a class="btn primary" href="#get" id="download-top">
+        Download for macOS
+      </a>
+      <a class="btn ghost" href="https://github.com/hartle-tech/clevertuna" rel="noopener">
+        Source on GitHub
+      </a>
+    </div>
+    <p class="fineprint" data-reveal>Free and open source · No account · No telemetry · Apache-2.0</p>
+  </div>
+
+  <figure class="deck-stage" data-reveal>
+    <canvas id="deck" width="1550" height="630" aria-label="A drawing of the CLVX keyboard with a colour wave crossing it"></canvas>
+    <figcaption class="deck-caption">
+      <span class="dot"></span>
+      <span id="deck-caption-text">Colour wave · running now</span>
+    </figcaption>
+  </figure>
+</section>
+
+<!-- ──────────────────────────── the pitch ──────────────────────────── -->
+<section class="strip" id="what">
+  <div class="pitch">
+    <h2 data-reveal>Nothing is written until you say so.</h2>
+    <p data-reveal>
+      Every control shows you the result first. The deck on screen runs at the
+      speed the keyboard runs at, in the direction the keyboard runs it, with the
+      light coming through the legends the way it does on the desk — because the
+      point of a preview is to save you a write you did not want.
+    </p>
+  </div>
+</section>
+
+<!-- ─────────────────────────── features ────────────────────────────── -->
+<section class="feature" data-feature>
+  <div class="copy">
+    <p class="kicker" data-reveal>Theme Builder</p>
+    <h3 data-reveal>Four zones, one picture.</h3>
+    <p data-reveal>
+      The keys, the touch surface, and the two strips along the function row —
+      each with its own colours, its own effect and its own speed. Drag one zone
+      onto another to copy its light. The keyboard hears about it when you press
+      Apply, and not before.
+    </p>
+  </div>
+  <div class="shot" data-reveal>
+    <img src="shots/builder-700.webp" srcset="shots/builder-700.webp 700w, shots/builder-1400.webp 1400w" sizes="(max-width: 900px) 92vw, 640px" alt="The Theme Builder window: a keyboard drawn with a colour wave, and an inspector with effect, colours, brightness, speed and direction." width="2160" height="1584" loading="lazy" decoding="async">
+  </div>
+</section>
+
+<section class="feature reverse" data-feature>
+  <div class="copy">
+    <p class="kicker" data-reveal>Themes</p>
+    <h3 data-reveal>Fifteen to start with. Then yours.</h3>
+    <p data-reveal>
+      Steady, breathing and moving. Pick one and the keyboard on screen wears it
+      immediately, moving, so you can tell a wave from a cycle without applying
+      either. Save what you build and it becomes a file on your Mac — one you can
+      rename, remove, or send to somebody.
+    </p>
+  </div>
+  <div class="shot" data-reveal>
+    <img src="shots/themes-700.webp" srcset="shots/themes-700.webp 700w, shots/themes-1400.webp 1400w" sizes="(max-width: 900px) 92vw, 640px" alt="The Themes window: a list of built-in themes on the left, and the keyboard wearing Magma on the right." width="1800" height="1304" loading="lazy" decoding="async">
+  </div>
+</section>
+
+<section class="feature" data-feature>
+  <div class="copy">
+    <p class="kicker" data-reveal>Menu bar</p>
+    <h3 data-reveal>Most of it never needs a window.</h3>
+    <p data-reveal>
+      Brightness, six themes, a roll of the dice, and the battery the keyboard
+      reports. Every row acts the moment you press it, and says so while it is
+      working — because a Bluetooth write takes about a second, and a button that
+      looks dead gets pressed twice.
+    </p>
+  </div>
+  <div class="shot narrow" data-reveal>
+    <img src="shots/menu-400.webp" srcset="shots/menu-400.webp 400w, shots/menu-800.webp 800w" sizes="(max-width: 900px) 80vw, 380px" alt="The menu bar panel: the keyboard's name, its battery at 80 per cent, a brightness slider, six theme tiles, and rows for Random and Wallpaper." width="800" height="1464" loading="lazy" decoding="async">
+  </div>
+</section>
+
+<section class="feature reverse" data-feature>
+  <div class="copy">
+    <p class="kicker" data-reveal>Match your desktop</p>
+    <h3 data-reveal>The colours already on your screen.</h3>
+    <p data-reveal>
+      One press reads your wallpaper and builds a scheme from the colours that
+      actually carry the picture — ranked by how vivid they are, not by how much
+      of the screen they cover, so a red maple over an orange sunset gives you red
+      and orange instead of five browns. Video wallpapers included.
+    </p>
+  </div>
+  <div class="shot" data-reveal>
+    <img src="shots/builder-wave-700.webp" srcset="shots/builder-wave-700.webp 700w, shots/builder-wave-1400.webp 1400w" sizes="(max-width: 900px) 92vw, 640px" alt="The Theme Builder showing a two-colour wave running across the keys." width="2160" height="1584" loading="lazy" decoding="async">
+  </div>
+</section>
+
+<section class="feature" data-feature>
+  <div class="copy">
+    <p class="kicker" data-reveal>Slots</p>
+    <h3 data-reveal>Set it up once, wear it everywhere.</h3>
+    <p data-reveal>
+      The CLVX keeps a separate scheme for the cable and for each of its three
+      Bluetooth channels. Choose the ones you want, take a copy, and the app walks
+      you through them one at a time.
+    </p>
+  </div>
+  <div class="shot narrow" data-reveal>
+    <img src="shots/slots-400.webp" srcset="shots/slots-400.webp 400w, shots/slots-800.webp 800w" sizes="(max-width: 900px) 80vw, 380px" alt="The slot picker: switches for the cable and Bluetooth channels one to three, and for which zones to copy." width="840" height="1104" loading="lazy" decoding="async">
+  </div>
+</section>
+
+<section class="feature reverse" data-feature>
+  <div class="copy">
+    <p class="kicker" data-reveal>Settings</p>
+    <h3 data-reveal>Everything the keyboard will tell you.</h3>
+    <p data-reveal>
+      Touch sensitivity, dominant hand, backlight and idle timeouts, power. A row
+      your keyboard does not carry is shown and dimmed rather than hidden, so you
+      can tell a missing feature from a missing setting.
+    </p>
+  </div>
+  <div class="shot" data-reveal>
+    <img src="shots/settings-700.webp" srcset="shots/settings-700.webp 700w, shots/settings-1400.webp 1400w" sizes="(max-width: 900px) 92vw, 640px" alt="The Settings window with panes for Touch, Keys, Power, Lighting and Device." width="1800" height="1344" loading="lazy" decoding="async">
+  </div>
+</section>
+
+<section class="feature reverse" data-feature>
+  <div class="copy">
+    <p class="kicker" data-reveal>Function row</p>
+    <h3 data-reveal>Remap the keys, not just the light.</h3>
+    <p data-reveal>
+      F1 through F12, each set to brightness, transport, volume, a screenshot,
+      Spotlight, or a plain function key. Written straight to the keyboard and
+      read back to check, the same way everything else here is.
+    </p>
+  </div>
+  <div class="shot" data-reveal>
+    <img src="shots/keys-700.webp" srcset="shots/keys-700.webp 700w, shots/keys-1400.webp 1400w" sizes="(max-width: 900px) 92vw, 640px" alt="The Settings window's Keys pane, listing F6 to F12 with what each key sends and a picker to change it." width="1800" height="1344" loading="lazy" decoding="async">
+  </div>
+</section>
+
+<!-- ───────────────────────────── numbers ───────────────────────────── -->
+<section class="stats" data-feature>
+  <div class="stat" data-reveal><b data-count="0">0</b><span>dependencies</span></div>
+  <div class="stat" data-reveal><b data-count="1">1</b><span>file to install</span></div>
+  <div class="stat" data-reveal><b data-count="165">0</b><span>tests, on every commit</span></div>
+  <div class="stat" data-reveal><b data-count="3">0</b><span>platforms</span></div>
+</section>
+
+<!-- ──────────────────────────── comparison ─────────────────────────── -->
+<section class="compare" id="compare">
+  <h2 data-reveal>Next to the app that came with it</h2>
+  <p class="sub" data-reveal>
+    Clevetura ships TouchOnKeys for its keyboards. It is the reference for what
+    the hardware does, and it does things Clevertuna does not. This is where the
+    two differ.
+  </p>
+
+  <div class="table-wrap" data-reveal>
+    <table>
+      <thead>
+        <tr><th scope="col">&nbsp;</th><th scope="col">Clevertuna</th><th scope="col">TouchOnKeys</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">macOS</th><td class="y">Native app</td><td class="y">Yes</td></tr>
+        <tr><th scope="row">Windows</th><td class="p">Tray app, unreleased</td><td class="y">Yes</td></tr>
+        <tr><th scope="row">Linux</th><td class="y">CLI, TUI and a bar applet</td><td class="n">No</td></tr>
+        <tr><th scope="row">Configure over Bluetooth</th><td class="y">Yes</td><td class="n">Cable only</td></tr>
+        <tr><th scope="row">Export a theme to a file</th><td class="y">Yes</td><td class="n">No</td></tr>
+        <tr><th scope="row">Import someone else's theme</th><td class="y">Yes</td><td class="n">No</td></tr>
+        <tr><th scope="row">Match the desktop wallpaper</th><td class="y">Yes</td><td class="n">No</td></tr>
+        <tr><th scope="row">Copy a scheme between slots</th><td class="y">Yes</td><td class="n">No</td></tr>
+        <tr><th scope="row">Scriptable</th><td class="y">Every action has a command</td><td class="n">No</td></tr>
+        <tr><th scope="row">Verifies what it wrote</th><td class="y">Reads back and compares</td><td class="u">Not stated</td></tr>
+        <tr><th scope="row">Key remapping</th><td class="y">The function row</td><td class="y">Yes</td></tr>
+        <tr><th scope="row">The AI key</th><td class="p">Reads its state</td><td class="y">Yes</td></tr>
+        <tr><th scope="row">Firmware updates</th><td class="n">No — separate bootloader</td><td class="y">Yes</td></tr>
+        <tr><th scope="row">Source available</th><td class="y">Apache-2.0</td><td class="n">Closed</td></tr>
+        <tr><th scope="row">Account required</th><td class="y">Never</td><td class="u">Varies</td></tr>
+        <tr><th scope="row">Telemetry</th><td class="y">None</td><td class="u">Not stated</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="disclaimer" data-reveal>
+    Clevetura, CLVX and TouchOnKeys are trademarks of their owner. Clevertuna is
+    an independent project and is not affiliated with, endorsed by, or supported
+    by them. Use the vendor's app for firmware updates — that runs over a
+    separate bootloader this project has not touched, and a bad flash is not a
+    recoverable mistake.
+  </p>
+</section>
+
+<!-- ───────────────────────────── writeup ───────────────────────────── -->
+<section class="writeup" id="writeup">
+  <div class="writeup-inner" data-reveal>
+    <p class="kicker">How it was built</p>
+    <h2>The protocol, written down.</h2>
+    <p>
+      Nothing about this keyboard's configuration interface was published. It was
+      worked out from the wire: the HID report framing, the base64-and-CRC
+      envelope, the protobuf field numbers, and the handful of unit conversions
+      that are not obvious — that speed is a period counted backwards, that
+      opacity is stored as its complement, and that a gradient angle and the
+      stored direction are mirrors of one another.
+    </p>
+    <p>
+      It is all documented, so anyone can write their own client without starting
+      where this started.
+    </p>
+    <div class="actions">
+      <a class="btn ghost" href="https://github.com/hartle-tech/clevertuna/blob/main/docs/PROTOCOL.md" rel="noopener">Read the protocol</a>
+      <a class="btn ghost" href="https://github.com/hartle-tech/clevertuna/blob/main/NOTICE" rel="noopener">Provenance</a>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────────── download ──────────────────────────── -->
+<section class="get" id="get">
+  <h2 data-reveal>Get Clevertuna</h2>
+  <div class="cards">
+    <article class="card" data-reveal>
+      <h3>macOS</h3>
+      <p>The menu bar app, the theme builder and the gallery. Apple silicon and Intel.</p>
+      <a class="btn primary" href="https://github.com/hartle-tech/clevertuna/releases/latest/download/Clevertuna-macOS.zip">Download the app</a>
+      <p class="note">macOS 26 or later. Signed with a Developer ID; not yet notarised, so the first launch needs <b>right-click → Open</b>.</p>
+    </article>
+    <article class="card" data-reveal>
+      <h3>Linux</h3>
+      <p>One binary. A CLI, a full-screen TUI, and a picker for your status bar.</p>
+      <a class="btn ghost" href="https://github.com/hartle-tech/clevertuna#linux" rel="noopener">Build it — one command</a>
+      <p class="note">No prebuilt binary yet. <code>cargo build --release</code> and it is done; Bluetooth needs BlueZ.</p>
+    </article>
+    <article class="card" data-reveal>
+      <h3>Build it</h3>
+      <p>Rust, no crates. The whole thing compiles from a clean checkout.</p>
+      <a class="btn ghost" href="https://github.com/hartle-tech/clevertuna" rel="noopener">Clone the repository</a>
+      <p class="note"><code>cargo build --release</code></p>
+    </article>
+  </div>
+</section>
+
+<!-- ───────────────────────────── support ───────────────────────────── -->
+<section class="support" id="support">
+  <div class="support-inner" data-reveal>
+    <h2>If it saved you an afternoon</h2>
+    <p>
+      No licence tiers, no telemetry, no upsell. Clevertuna is free and stays
+      free. If you want to put something behind it, these all go to the work.
+    </p>
+    <p class="pills">
+      <a class="pill" href="https://github.com/sponsors/code-hartle-tech" rel="noopener noreferrer" target="_blank">GitHub Sponsors</a>
+      <a class="pill" href="https://patreon.com/HARTLETECH" rel="noopener noreferrer" target="_blank">Patreon</a>
+      <a class="pill" href="https://liberapay.com/hartle.tech/donate" rel="noopener noreferrer" target="_blank">Liberapay</a>
+      <a class="pill" href="https://ko-fi.com/hartletech" rel="noopener noreferrer" target="_blank">Ko-fi</a>
+      <a class="pill" href="https://wise.com/pay/business/hartletechunipessoallda" rel="noopener noreferrer" target="_blank">Wise</a>
+      <a class="pill" href="https://paypal.me/hartletech" rel="noopener noreferrer" target="_blank">PayPal</a>
+      <a class="pill" href="https://buy.stripe.com/5kQ8wR3Wm1sjbKW15E9fW01" rel="noopener noreferrer" target="_blank">Stripe</a>
+    </p>
+    <p class="or">
+      Or star the repository — it costs nothing and it is how people find it.
+      <a class="plain" href="https://github.com/hartle-tech/clevertuna" rel="noopener">github.com/hartle-tech/clevertuna</a>
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="foot">
+    <div>
+      <p class="brand">HARTLE.TECH</p>
+      <p class="muted">Porto, Portugal · <a href="mailto:contact@hartle.tech">contact@hartle.tech</a></p>
+    </div>
+    <nav class="foot-links">
+      <a href="https://github.com/hartle-tech/clevertuna" rel="noopener">GitHub</a>
+      <a href="https://github.com/hartle-tech/clevertuna/blob/main/docs/PROTOCOL.md" rel="noopener">Protocol</a>
+      <a href="https://github.com/hartle-tech/clevertuna/releases" rel="noopener">Releases</a>
+      <a href="https://github.com/hartle-tech/clevertuna/blob/main/LICENSE" rel="noopener">Apache-2.0</a>
+    </nav>
+  </div>
+  <p class="legal">
+    Clevetura, CLVX and TouchOnKeys are third-party marks, used here only to say
+    what this software is compatible with. Clevertuna is not affiliated with
+    Clevetura.
+  </p>
+</footer>
+
+<script src="layout.js"></script>
+<script src="vendor/anime.min.js"></script>
+<script src="clevertuna.js"></script>
+</body>
+</html>

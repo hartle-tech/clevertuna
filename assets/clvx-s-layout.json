@@ -1,0 +1,549 @@
+{
+  "note": "The CLVX S as it physically is, measured from photographs of the board and corrected against the hardware. No navigation column: the deck ends at backspace, backslash, return and the right shift. Tab carries the AI key, and caps lock carries its own indicator LED.",
+  "unit": {
+    "width": 15.5,
+    "height": 6.3,
+    "keyGap": 0.05
+  },
+  "rows": [
+    {
+      "y": 0.25,
+      "h": 0.55,
+      "keys": [
+        {
+          "x": 0.25,
+          "w": 1.5,
+          "label": "esc",
+          "sub": "fn lock"
+        },
+        {
+          "x": 1.75,
+          "w": 1.0,
+          "label": "f1",
+          "size": "small"
+        },
+        {
+          "x": 2.75,
+          "w": 1.0,
+          "label": "f2",
+          "size": "small"
+        },
+        {
+          "x": 3.75,
+          "w": 1.0,
+          "label": "f3",
+          "size": "small"
+        },
+        {
+          "x": 4.75,
+          "w": 1.0,
+          "label": "f4",
+          "size": "small"
+        },
+        {
+          "x": 5.75,
+          "w": 1.0,
+          "label": "f5",
+          "size": "small"
+        },
+        {
+          "x": 6.75,
+          "w": 1.0,
+          "label": "f6",
+          "size": "small"
+        },
+        {
+          "x": 7.75,
+          "w": 1.0,
+          "label": "f7",
+          "size": "small"
+        },
+        {
+          "x": 8.75,
+          "w": 1.0,
+          "label": "f8",
+          "size": "small"
+        },
+        {
+          "x": 9.75,
+          "w": 1.0,
+          "label": "f9",
+          "size": "small"
+        },
+        {
+          "x": 10.75,
+          "w": 1.0,
+          "label": "f10",
+          "size": "small"
+        },
+        {
+          "x": 11.75,
+          "w": 1.0,
+          "label": "f11",
+          "size": "small"
+        },
+        {
+          "x": 12.75,
+          "w": 1.0,
+          "label": "f12",
+          "size": "small"
+        },
+        {
+          "x": 13.75,
+          "w": 1.5,
+          "label": "L R",
+          "sub": "fn",
+          "size": "small"
+        }
+      ]
+    },
+    {
+      "y": 0.85,
+      "h": 1.0,
+      "keys": [
+        {
+          "x": 0.25,
+          "w": 1.5,
+          "label": "~",
+          "sub": "`"
+        },
+        {
+          "x": 1.75,
+          "w": 1.0,
+          "label": "!",
+          "sub": "1"
+        },
+        {
+          "x": 2.75,
+          "w": 1.0,
+          "label": "@",
+          "sub": "2"
+        },
+        {
+          "x": 3.75,
+          "w": 1.0,
+          "label": "#",
+          "sub": "3"
+        },
+        {
+          "x": 4.75,
+          "w": 1.0,
+          "label": "$",
+          "sub": "4"
+        },
+        {
+          "x": 5.75,
+          "w": 1.0,
+          "label": "%",
+          "sub": "5"
+        },
+        {
+          "x": 6.75,
+          "w": 1.0,
+          "label": "^",
+          "sub": "6"
+        },
+        {
+          "x": 7.75,
+          "w": 1.0,
+          "label": "&",
+          "sub": "7"
+        },
+        {
+          "x": 8.75,
+          "w": 1.0,
+          "label": "*",
+          "sub": "8"
+        },
+        {
+          "x": 9.75,
+          "w": 1.0,
+          "label": "(",
+          "sub": "9"
+        },
+        {
+          "x": 10.75,
+          "w": 1.0,
+          "label": ")",
+          "sub": "0"
+        },
+        {
+          "x": 11.75,
+          "w": 1.0,
+          "label": "_",
+          "sub": "-"
+        },
+        {
+          "x": 12.75,
+          "w": 1.0,
+          "label": "+",
+          "sub": "="
+        },
+        {
+          "x": 13.75,
+          "w": 1.5,
+          "label": "back",
+          "size": "small"
+        }
+      ]
+    },
+    {
+      "y": 1.9,
+      "h": 1.0,
+      "keys": [
+        {
+          "x": 0.25,
+          "w": 2.0,
+          "label": "tab",
+          "sub": "AI",
+          "size": "small"
+        },
+        {
+          "x": 2.25,
+          "w": 1.0,
+          "label": "Q"
+        },
+        {
+          "x": 3.25,
+          "w": 1.0,
+          "label": "W"
+        },
+        {
+          "x": 4.25,
+          "w": 1.0,
+          "label": "E"
+        },
+        {
+          "x": 5.25,
+          "w": 1.0,
+          "label": "R"
+        },
+        {
+          "x": 6.25,
+          "w": 1.0,
+          "label": "T"
+        },
+        {
+          "x": 7.25,
+          "w": 1.0,
+          "label": "Y"
+        },
+        {
+          "x": 8.25,
+          "w": 1.0,
+          "label": "U"
+        },
+        {
+          "x": 9.25,
+          "w": 1.0,
+          "label": "I"
+        },
+        {
+          "x": 10.25,
+          "w": 1.0,
+          "label": "O"
+        },
+        {
+          "x": 11.25,
+          "w": 1.0,
+          "label": "P"
+        },
+        {
+          "x": 12.25,
+          "w": 1.0,
+          "label": "{",
+          "sub": "["
+        },
+        {
+          "x": 13.25,
+          "w": 1.0,
+          "label": "}",
+          "sub": "]"
+        },
+        {
+          "x": 14.25,
+          "w": 1.0,
+          "label": "|",
+          "sub": "\\"
+        }
+      ]
+    },
+    {
+      "y": 2.95,
+      "h": 1.0,
+      "keys": [
+        {
+          "x": 0.25,
+          "w": 2.25,
+          "label": "caps",
+          "size": "small",
+          "led": true
+        },
+        {
+          "x": 2.5,
+          "w": 1.0,
+          "label": "A",
+          "homing": false
+        },
+        {
+          "x": 3.5,
+          "w": 1.0,
+          "label": "S",
+          "homing": false
+        },
+        {
+          "x": 4.5,
+          "w": 1.0,
+          "label": "D",
+          "homing": false
+        },
+        {
+          "x": 5.5,
+          "w": 1.0,
+          "label": "F",
+          "homing": true
+        },
+        {
+          "x": 6.5,
+          "w": 1.0,
+          "label": "G",
+          "homing": false
+        },
+        {
+          "x": 7.5,
+          "w": 1.0,
+          "label": "H",
+          "homing": false
+        },
+        {
+          "x": 8.5,
+          "w": 1.0,
+          "label": "J",
+          "homing": true
+        },
+        {
+          "x": 9.5,
+          "w": 1.0,
+          "label": "K",
+          "homing": false
+        },
+        {
+          "x": 10.5,
+          "w": 1.0,
+          "label": "L",
+          "homing": false
+        },
+        {
+          "x": 11.5,
+          "w": 1.0,
+          "label": ":",
+          "sub": ";"
+        },
+        {
+          "x": 12.5,
+          "w": 1.0,
+          "label": "\"",
+          "sub": "'"
+        },
+        {
+          "x": 13.5,
+          "w": 1.75,
+          "label": "enter",
+          "size": "small"
+        }
+      ]
+    },
+    {
+      "y": 4.0,
+      "h": 1.0,
+      "keys": [
+        {
+          "x": 0.25,
+          "w": 2.25,
+          "label": "shift",
+          "size": "small"
+        },
+        {
+          "x": 2.5,
+          "w": 1.0,
+          "label": "Z"
+        },
+        {
+          "x": 3.5,
+          "w": 1.0,
+          "label": "X"
+        },
+        {
+          "x": 4.5,
+          "w": 1.0,
+          "label": "C"
+        },
+        {
+          "x": 5.5,
+          "w": 1.0,
+          "label": "V"
+        },
+        {
+          "x": 6.5,
+          "w": 1.0,
+          "label": "B"
+        },
+        {
+          "x": 7.5,
+          "w": 1.0,
+          "label": "N"
+        },
+        {
+          "x": 8.5,
+          "w": 1.0,
+          "label": "M"
+        },
+        {
+          "x": 9.5,
+          "w": 1.0,
+          "label": "<",
+          "sub": ","
+        },
+        {
+          "x": 10.5,
+          "w": 1.0,
+          "label": ">",
+          "sub": "."
+        },
+        {
+          "x": 11.5,
+          "w": 1.0,
+          "label": "?",
+          "sub": "/"
+        },
+        {
+          "x": 12.5,
+          "w": 2.75,
+          "label": "shift",
+          "size": "small"
+        }
+      ]
+    },
+    {
+      "y": 5.05,
+      "h": 1.0,
+      "keys": [
+        {
+          "x": 0.25,
+          "w": 1.0,
+          "label": "fn",
+          "size": "small"
+        },
+        {
+          "x": 1.25,
+          "w": 1.0,
+          "label": "ctrl",
+          "size": "small"
+        },
+        {
+          "x": 2.25,
+          "w": 1.0,
+          "label": "opt",
+          "size": "small"
+        },
+        {
+          "x": 3.25,
+          "w": 1.25,
+          "label": "⌘",
+          "size": "small"
+        },
+        {
+          "x": 4.5,
+          "w": 4.5,
+          "label": "",
+          "space": true
+        },
+        {
+          "x": 9.0,
+          "w": 1.25,
+          "label": "⌘",
+          "size": "small"
+        },
+        {
+          "x": 10.25,
+          "w": 1.0,
+          "label": "type",
+          "sub": "fn",
+          "size": "small"
+        },
+        {
+          "x": 11.25,
+          "w": 1.0,
+          "label": "opt",
+          "size": "small"
+        },
+        {
+          "x": 12.25,
+          "w": 1.0,
+          "label": "◀",
+          "size": "small"
+        },
+        {
+          "x": 13.25,
+          "w": 1.0,
+          "label": "▲",
+          "size": "tiny",
+          "y": 5.05,
+          "h": 0.48
+        },
+        {
+          "x": 13.25,
+          "w": 1.0,
+          "label": "▼",
+          "size": "tiny",
+          "y": 5.57,
+          "h": 0.48
+        },
+        {
+          "x": 14.25,
+          "w": 1.0,
+          "label": "▶",
+          "size": "small"
+        }
+      ]
+    }
+  ],
+  "zones": [
+    {
+      "id": "keyboard",
+      "name": "Keys",
+      "shape": "field",
+      "note": "Every key on the deck."
+    },
+    {
+      "id": "touchpad",
+      "name": "Touchpad",
+      "shape": "region",
+      "x": 2.75,
+      "y": 0.85,
+      "w": 10.0,
+      "h": 4.15,
+      "note": "The touch surface is the key field itself — the block from 2 across to =, the number row down to the bottom letter row. There is no separate pad on this keyboard."
+    },
+    {
+      "id": "leftSlider",
+      "name": "Left slider",
+      "shape": "strip",
+      "x": 2.75,
+      "y": 0.25,
+      "w": 5.0,
+      "h": 0.55,
+      "note": "A touch strip running along the F2–F6 keycaps; the board prints a dashed arrow under them."
+    },
+    {
+      "id": "rightSlider",
+      "name": "Right slider",
+      "shape": "strip",
+      "x": 7.75,
+      "y": 0.25,
+      "w": 5.0,
+      "h": 0.55,
+      "note": "A touch strip running along the F7–F11 keycaps; the board prints a dashed arrow under them."
+    }
+  ]
+}
